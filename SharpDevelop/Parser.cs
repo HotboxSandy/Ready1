@@ -499,8 +499,8 @@ namespace scsc
             return false;
         }
 
-        //[6]  FieldDef = Type (Ident | Ident '[' Number ']' ) ';'.
-        //[6]  MethodDef = (Type | 'void') Ident '(' [Type Ident {',' Type Ident}] ')' Compound.
+        //[6]  FieldDef = Type 
+        //[6]  MethodDef = (Type | 'void') Ident 
         public bool IsFieldDeclOrMethodDecl()
         {
             IdentToken name;
@@ -608,7 +608,7 @@ namespace scsc
             return true;
         }
 
-        //[8]  WhileSt = 'while' '(' Expression ')' Statement. 
+        //[8] 
         public bool IsWhileStatement()
         {
             Type type;
@@ -644,7 +644,7 @@ namespace scsc
             }
             return true;
         }
-        //[9]  StopSt = 'break' ';' | 'continue' ';' | 'return' [Expression] ';'
+        //[9]  
         public bool IsStopStatement()
         {
             Type type;
@@ -681,7 +681,7 @@ namespace scsc
             return true;
         }
 
-        // [10] Expression = AdditiveExpr [(('<' | '<=' | '==' | '!=' | '>=' | '>') AdditiveExpr).
+        // [10]
         public bool IsExpression(LocationInfo location, out Type type)
         {
             if (!IsAdditiveExpr(location, out type)) return false;
@@ -702,7 +702,7 @@ namespace scsc
             return true;
         }
 
-        // [11] AdditiveExpr = ['+' | '-'] MultiplicativeExpr {('+' | '-' | '|' | '||' |) MultiplicativeExpr}.
+        // [11] 
         public bool IsAdditiveExpr(LocationInfo location, out Type type)
         {
             SpecialSymbolToken opToken = token as SpecialSymbolToken;
@@ -793,7 +793,7 @@ namespace scsc
             return true;
         }
 
-        // [12] MultiplicativeExpr = SimpleExpr {('*' | '/' | '%' | '&' | '&&') SimpleExpr}.
+        // [12] MultiplicativeExpr = SimpleExpr
         public bool IsMultiplicativeExpr(LocationInfo location, out Type type)
         {
             if (!IsSimpleExpr(location, out type)) return false;
@@ -851,10 +851,9 @@ namespace scsc
             return true;
         }
 
-        //[13] SimpleExpr = ('++' | '--' | '-' | '~' | '!') PrimaryExpr | PrimaryExpr['++' | '--'].
-        //[14] PrimaryExpr = Constant | Variable | VarIdent[('=' | '+=' | '-=' | '*=' | '/=' | '%=') Expression] |
-        //'*' VarIdent | '&' VarIdent | FuncIdent '(' [Expression] ')' | '(' Expression ')'.
-        // [14] MethodCall = Ident '(' [Expression {',' Expression}] ')'.
+        //[13] SimpleExpr 
+        //[14] PrimaryExpr = Constant | Variable | VarIdent
+        // [14] MethodCall = Ident 
 
         public enum IncDecOps { None, PreInc, PreDec, PostInc, PostDec }
         public bool IsSimpleExpr(LocationInfo location, out Type type)
